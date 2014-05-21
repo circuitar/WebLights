@@ -1,0 +1,48 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "js/jquery.knob.js" %}"></script>
+    <title>Web Dimmer</title>
+</head>
+<body>
+<div class="logo">
+    <img src="{% static "images/logo.png" %}">
+</div>
+{% for device in devices %}
+    <div class="device">
+        <div class="device-name">{{ device.name }}</div>
+        <div class="knob">
+            <input type="text" value="{{ device.value|floatformat:0 }}" class="dial-{{ device.code }}">
+        </div>
+    </div>
+{% endfor %}
+<script>
+    var devices = {};
+
+    $(function() {
+        {% for device in devices %}
+            devices['{{ device.code }}'] = {};
+            devices['{{ device.code }}'].update = function (value) {
+                $.post( "set/", { {{ device.code }}: value });
+            };
+
+            $(".dial-{{ device.code }}").knob({
+                'fgColor': "#66CC66",
+                'angleOffset': -125,
+                'angleArc': 250,
+                'width': 500,
+                'height': 500,
+                'min': {{ device.min_value|floatformat:0 }},
+                'max': {{ device.max_value|floatformat:0 }},
+                'change': devices['{{ device.code }}'].update
+            });
+        {% endfor %}
+    });
+</script>
+</body>
+</html>
