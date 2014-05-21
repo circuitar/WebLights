@@ -1,13 +1,13 @@
 WebLights
 =========
 
-This is a project that can be used to control lights from the web using Arduino and the Nanoshields system from Circuitar.
+This is a project that can be used to control lights from the web using Arduino and the [Nanoshields](http://www.circuitar.com.br/nanoshields) system from [Circuitar](http://www.circuitar.com.br).
 It includes a web server written in [Python](https://www.python.org/), using the [Django](https://www.djangoproject.com/) framework, that stores the current status of one or more lights.
 The status of the lights on the web server is accessed by the Arduino, via an Ethernet shield, that uses it to control the lights.
 The web server provides a web interface that can be accessed with a browser to update the status of the lights and control them in real time.
 An administrative web interface is provided to add or remove lights.
 
-This project was built and tested using Nanoshields from http://www.circuitar.com.br, but it can be easily adapted for use with other compatible hardware, or with hardware built from scratch using an official Arduino Ethernet shield.
+This project was built and tested using [Nanoshields](http://www.circuitar.com.br/nanoshields), but it can be easily adapted for use with other compatible hardware, or with hardware built from scratch using an official Arduino Ethernet shield.
 
 Here is a description of the files/subdirectories:
 
